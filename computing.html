@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="/img/pku_favicon.ico" mce_href="/img/pku_favicon.ico" type="image/x-icon">
+    <title>Protein Computation Portal</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,100italic,100,300,300italic" rel="stylesheet" type="text/css">
+    <!-- Theme CSS -->
+    <link href="css/agency.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<link href="dist/semantic-ui/semantic.min.css" rel="stylesheet" type="text/css"/>
+    <script src="dist/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/semantic.min.js"></script>
+    <script type='text/javascript'>
+        $(function(){
+            $('.ui.checkbox').checkbox();
+            $('.ui.accordion').accordion();
+        });
+
+        $( document ).ready( function () {
+            $('#showContent').load("introduction.html");
+
+            $('.ui .item').on('click', function () {
+                $('.ui .item').removeClass('active');
+                $(this).addClass('active');
+                $('#showOP').hide();
+                $('#showFrame').hide();
+                $('#showContent').show();
+
+                var curtag= $(this).attr('name');
+                switch(curtag) {
+                    case "Introduction":
+                        $('#showContent').html("");
+                        $('#showContent').load("introduction.html");
+                        break;
+                    case "Cavity":
+                        $('#showContent').html("");
+                        $('#showContent').load("cavity_intro.html");
+                        break;
+                    case "Pocket":
+                        $('#showContent').html("");
+                        $('#showContent').load("pocket_intro.html");
+                        break;
+                    case "CorrSite":
+                        $('#showContent').html("");
+                        $('#showContent').load("corrsite_intro.html");
+                        break;
+                    case "CysPred":
+                        $('#showContent').html("");
+                        $('#showContent').load("cyspred_intro.html");
+                        break;
+                    case "Computing":
+                        $('#showContent').hide();
+                        $("#showFrame").show();
+                        $("#showFrame").attr("src", "./computing.php");
+                        break;
+
+                    case "New job":
+                        $('#showContent').hide();
+                        $("#showFrame").show();
+                        $("#showFrame").attr("src", "./computing.html");
+                        break;
+
+                    case "Old job":
+                        $('#showContent').hide();
+                        $("#showFrame").show();
+                        $("#showFrame").attr("src", "./compute_loading.html");
+                        break;
+
+                    case "Help":
+                        $('#showContent').html("");
+                        $('#showContent').load("cavity_in.html");
+                        break;
+                    case "Contact":
+                        $('#showContent').html("");
+                        $('#showContent').load("contact.html");
+                        break;
+
+
+                }
+
+            });
+
+        });
+
+
+        function resizeIframe() {
+            var iFrameID = document.getElementById('showFrame');
+            if (iFrameID) {
+                var cont = iFrameID.contentWindow.document.body || frame.contentDocument.body
+                // here you can make the height
+                iFrameID.height = cont.scrollHeight + "px";
+            }
+        }
+
+    </script>
+
+</head>
+
+<body id="page-top" class="index">
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="./index.html">
+                    <font size='6'>Protein Computation Portal</font>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="page-scroll" href="./index.html#about">about</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="page-scroll" href="#toolbox">Toolbox</a>
+                        <div class="dropdown-content">
+                            <p><a href="#">Cavity</a></p>
+                            <p><a href="#">Pocket</a></p>
+                            <p><a href="#">Corrsite</a></p>
+                            <p><a href="#">CysPred</a></p>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="page-scroll" href="#tutorial">Tutorial</a>
+                        <div class="dropdown-content">
+                            <p><a class="page-scroll" href="#tutorial-video">Video</a></p>
+                            <p><a href="./tutorial.html">Text version</a></p>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="page-scroll" href="#publications">Publications</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="btn" data-toggle="modal" data-target="#loginFormTest">Log in</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <img src="img/computationHeader.jpg" width="100%" />
+ 
+    
+
+    
+ <section>  
+<div class="ui container">
+    <div class="ui grid">
+        <div class="three wide column">
+            <div class="ui blue vertical pointing menu">
+                
+
+                <a class="item" name="Computing">
+                    <b>Computing</b>
+                </a>
+
+                <div class="menu">
+                    <a class="item" name="New job">New job</a>
+                    <a class="item" name="Old job">Old job</a>
+                </div>
+
+
+
+                <a class="item" name="Contact">
+                    <b>FAQ</b>
+                </a>
+            </div>
+        </div>
+
+    <div class="thirteen wide stretched column">
+        <div id="showContent" class="ui segment"></div>
+        <iframe id="showFrame" src="" width="100%" height="1500px"
+                scrolling="no" frameborder="0" style="display: none"></iframe>
+    </div>
+
+        <div class="five wide stretched column"></div>
+
+
+    </div>
+</div>
+</section> 
+ <!--   <section>
+	<script type="text/javascript">
+	  jmolApplet0 = Jmol.getApplet("jmolApplet0", Info);
+	  Jmol.script(jmolApplet0,"background black; load 4mny.pdb; wireframe only; spin on")
+	</script>
+	<b>Model:</b>
+		<input name="vis" type="radio" onclick="javascript:Jmol.script(jmolApplet0, 'wireframe only; ');" checked="checked" /> Wireframe 
+		<input name="vis" type="radio" onclick="javascript:Jmol.script(jmolApplet0,
+		   'cartoon only; ');" />Cartoon
+		<input name="vis" type="radio" onclick="javascript:Jmol.script(jmolApplet0,
+		   'backbone only; ');" />Backbone
+		<b>&nbsp; &nbsp; &nbsp; &nbsp; Spin:</b>
+		<input name="vis" type="radio" onclick="javascript:Jmol.script(jmolApplet0, 'spin off; ');" checked="checked" />Off
+		<input name="vis" type="radio" onclick="javascript:Jmol.script(jmolApplet0, 'spin on; ');" />On
+        <br>
+    </section>-->
+<!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/agency.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Corrsite</title>
+    <script type="text/javascript" src="resource/js/jsmol/JSmol.min.js"></script>
+    <!--<link href="resource/css/select.css" rel="stylesheet" type="text/css"/>-->
+    <link href="resource/css/main.css" rel="stylesheet" type="text/css"/>
+    <!--<link href="resource/css/mystyle.css" rel="stylesheet" type="text/css"/>-->
+    <link href="resource/semancui/semantic.css" rel="stylesheet" type="text/css"/>
+    <script src="resource/js/jquery/jquery.js"></script>
+    <script type="text/javascript" src="resource/semancui/semantic.js"></script>
+    <script src="assets/library/iframe.js"></script>
+    <script type="text/javascript" src="resource/FileSaver/FileSaver.js"></script>
+    <script type="text/javascript" src="resource/js/jquery.ajaxfileupload.js"></script>
+    <script></script>
+    <!--<script type="text/javascript" src="resource/js/require.js"></script>-->
+    <script type="text/javascript">
+        $(function () {
+            $('.ui.checkbox').checkbox();
+            $('.ui.accordion').accordion();
+
+
+        });
+
+
+        var JmolPath = "resource/js/jsmol/";
+        var JmolMode, JmolInfo, myJmol = 'myJmol';
+        var sessionworkname = "";
+        var sessionid = "";
+        var initialScript = "set picking atom; select none; set display selected; ";
+        $( document ).ready(function() {
+            JmolInfo = {
+                width: 528,
+                height: 520,
+                color: '#eeffff',
+                j2sPath: JmolPath + 'j2s',
+                jarPath: JmolPath + 'java',
+                jarFile: 'JmolAppletSigned0.jar',
+                isSigned: true,
+                serverURL: JmolPath + 'php/jsmol.php',
+                disableInitialConsole: true,
+                script: initialScript + 'load resource/data/1g58.pdb;cartoons only;color structure; javascript readChainsInfo();',
+            };
+            $('#mol').html(Jmol.getAppletHtml(myJmol, JmolInfo));
+        });
+
+
+
+        // load cavity results
+        function loadcavity() {
+            $.ajax({
+                type: 'POST',
+                url: "pro_loadcavity.php",
+
+                success: function () {
+                    $('#cavitytitle').removeClass('active');
+                    $('#cavitycont').removeClass('active');
+                    $('#pockettitle').addClass('active');
+                    $('#pocketcont').addClass('active');
+                }
+            });
+        }
+
+    </script>
+
+
+</head>
+<body>
+
+
+<div class="ui grid">
+    <div class="ten wide column">
+        <!--<div class="ui container">-->
+        <div class="ui segment">
+            <div id="mol"></div>
+            <!--<form method="post" action="" enctype="multipart/form-data">-->
+            <!--</form>-->
+        </div>
+    </div>
+    <!--</div>-->
+
+    <div class="six wide column">
+        <div class="ui container">
+        <div class="ui styled accordion">
+            <div class="active title" id="cavitytitle">
+                <i class="dropdown icon"></i>
+                <a class="ui grey ribbon label" >&nbsp;Cavity &nbsp;</a>
+            </div>
+            <div class="active content" id="cavitycont">
+                <div class="ui form">
+                Job ID
+                    <input class="ui text" type="text" name="jobid" />
+                    <div class="ui hidden divider"></div>
+                    <button class="ui centered button" onclick="loadcavity()" id="cavsub"> Submit</button>
+                </div>
+            </div>
+
+
+            <div class="title" id="pockettitle">
+                <i class="dropdown icon"></i>
+                <a class="ui grey ribbon label">&nbsp;Pocket&nbsp;</a>
+            </div>
+            <div class="content" id="pocketcont">
+                <p></p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                <a class="ui grey ribbon label" id="corrsiteop">CorrSite</a>
+
+            </div>
+            <div class="content">
+                <p></p>
+            </div>
+            <div class="title">
+                <i class="dropdown icon"></i>
+                <a class="ui grey ribbon label" id="cyspredop"> CysPred</a>
+            </div>
+            <div class="content">
+                <p></p>
+            </div>
+
+        </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+<!--<div class="four wide column">-->
+<!--<div class="ui violet segment" id="Corroutput" style="display: none">-->
+<!--<p>Section3: Running Cavity or CorrSite...</p>-->
+<!--<div style="text-align:center;">-->
+<!--<img src="resource/image/Loading3.gif" style="width:100%;">-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="ui violet segment" id="Corroutput1" style="display: none">-->
+<!--<p>Section3: CorrSite output:</p>-->
+<!--<form id="myFormout">-->
+<!--<div id="outputCorr"></div>-->
+<!--</form>-->
+<!--<div class="ui divider"></div>-->
+
+<!--<button class="ui violet basic button" onclick="downloadfile()">Download output</button>-->
+
+<!--</div>-->
+<!--</div>-->
+
+
+</body>
+</html>
