@@ -1088,4 +1088,24 @@ div#OR {
     font-size: 20px;
 }
 
+/* navbar in computing */
+.navbar-custom-computing {
+    background-color: transparent;
+    padding: 25px 0;
+    -webkit-transition: padding 0.3s;
+    -moz-transition: padding 0.3s;
+    transition: padding 0.3s;
+    border: none;
+}
+.navbar-custom-computing .navbar-brand {
+    color: #617fde;
+    font-family: 'Roboto', sans-serif;
+}
 
+.navbar-custom-computing .nav li a {
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #818b99;
+}
